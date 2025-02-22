@@ -1,0 +1,77 @@
+body {
+
+    background-color: red;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+}
+
+#logo-bgp {
+    width: 500px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: var(--cinza-escuro);
+    margin: 40px;
+}
+
+.login label {
+    color: var(--branco)
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    height: 30px;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.input:focus {
+    background-color: rgb(255, 255, 255);
+    outline: none;
+    border-radius: 5px;
+    color: black
+}
+
+input::placeholder {
+    color: white
+}
+
+.imput-submit {
+    margin-bottom: 10px;
+    background: rgb(255, 255, 255);
+    height: 30px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+}
+
+@media(max-width:1024px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
