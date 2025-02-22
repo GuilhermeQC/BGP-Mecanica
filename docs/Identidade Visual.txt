@@ -1,0 +1,38 @@
+1. Paleta de Cores:
+A paleta de cores será baseada em tons escuros de azul, que trazem uma sensação de confiança, seriedade e tecnologia, combinando com a área mecânica, além de serem mais sóbrios e elegantes.
+
+Azul Escuro (Principal): Um azul profundo que transmite confiança, profissionalismo e sofisticação.
+Código Hex: #1E2A47
+Azul Médio: Um tom mais claro e vibrante que ainda mantém a sensação de seriedade, perfeito para botões ou destaques.
+Código Hex: #4C6A92
+Cinza Escuro (Secundário): Um tom neutro, adequado para o fundo ou detalhes de texto.
+Código Hex: #333C4F
+Azul Claro (Detalhes): Um azul mais suave, que pode ser usado em ícones ou pequenos elementos para dar contraste.
+Código Hex: #6A8DAD
+Branco (Contraste): Para garantir boa legibilidade e destacar elementos importantes.
+Código Hex: #FFFFFF
+Essa combinação de azuis escuros e cinzas proporciona um visual sóbrio, enquanto o azul claro e o branco podem ser usados para dar destaque e contraste.
+
+2. Fontes:
+Fonte para Títulos e Cabeçalhos:
+Fonte: "Montserrat" (Sans-serif)
+Justificativa: Esta fonte é moderna, limpa e de fácil leitura, transmitindo um ar de profissionalismo. Ótima para títulos e cabeçalhos, ela tem um estilo forte que combina bem com o universo de tecnologia e mecânica.
+Uso: Títulos, subtítulos e chamadas importantes.
+Exemplo de Estilo: Montserrat Bold, 24pt para títulos grandes.
+Fonte para Texto de Corpo:
+Fonte: "Roboto" (Sans-serif)
+Justificativa: Roboto é uma fonte muito legível, com uma aparência moderna e clean. Ela é excelente para textos mais longos ou informações técnicas, proporcionando uma leitura confortável em telas.
+Uso: Corpo de texto, descrições, artigos e parágrafos.
+Exemplo de Estilo: Roboto Regular, 16pt.
+Fonte para Elementos Secundários (Botões, Menus):
+Fonte: "Roboto Condensed" (Sans-serif)
+Justificativa: Roboto Condensed é mais estreita, o que a torna excelente para botões e menus, onde é necessário mais espaço sem perder a legibilidade.
+Uso: Botões, menus de navegação, links.
+Exemplo de Estilo: Roboto Condensed Bold, 14pt.
+3. Logo e Elementos Visuais:
+Embora o foco da identidade visual seja a parte gráfica da comunicação digital, para o seu projeto de programação web, a criação de um logo relacionado ao tema de oficina mecânica é importante. O logo poderia ter elementos gráficos como uma chave inglesa estilizada, engrenagens ou circuitos, combinados com tipografia moderna.
+
+4. Aplicações e Exemplos:
+Botões: Botões de chamada para ação podem usar o Azul Médio como cor de fundo, com texto branco, para garantir contraste e legibilidade. Ao passar o mouse, pode-se usar o Azul Claro como cor de hover.
+Barras de Navegação: A barra superior poderia usar o Azul Escuro, com o texto em Branco ou Cinza Claro, para garantir boa visibilidade.
+Fundo: O fundo do site pode ser em Cinza Escuro, com blocos de conteúdo em Azul Claro para dar uma sensação de separação entre seções.
