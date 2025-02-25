@@ -9,8 +9,8 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 
 sequelize.authenticate()
-    .then(() => console.log('✅ Conectado ao banco de dados'))
-    .catch(err => console.error('❌ Erro ao conectar:', err));
+    .then(() => console.log('Conectado ao banco de dados'))
+    .catch(err => console.error('Erro ao conectar:', err));
 
 module.exports = sequelize;
 
