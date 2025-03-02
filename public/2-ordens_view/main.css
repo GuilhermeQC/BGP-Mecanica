@@ -1,0 +1,13 @@
+body {
+    height: 100svh;
+}
+body > :nth-child(n+3){
+    display: none;
+}
+
+body > :nth-child(2) {
+    width: 100%;
+}
+#nome::before {
+    content: "Nome";
+}
