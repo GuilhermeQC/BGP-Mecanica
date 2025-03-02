@@ -9,7 +9,47 @@ body > :nth-child(2) {
     width: 100%;
 }
 
+.header, .body .row {
+    color: white;
+    background-color: var(--azul-medio);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 2rem;
 
+    & span {
+        border-right: white solid 1px;
+        padding-right: 1rem;
+    }
+
+    & :nth-child(1) {
+        width: 9ch;
+    }
+
+    & > :nth-child(2) {
+        width: 50ch;
+    }
+
+    & > :nth-child(3) {
+        margin-left: auto;
+    }
+}
+.body {
+    height: 60svh;
+    overflow: auto;
+}
+.body .row {
+    width: 100%;
+    color: var(--type-color);
+    background: none;
+    border-bottom: black solid 1px;;
+    & span {
+        border-right: black solid 1px;
+    }
+}
+
+.display span {
+    display: block;
+}
 
 /* labels: os */
 #nome::before {

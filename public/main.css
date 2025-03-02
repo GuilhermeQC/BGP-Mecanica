@@ -62,7 +62,7 @@ main {
 }
 
 main form {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 main .display {
