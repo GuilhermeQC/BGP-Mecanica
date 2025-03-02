@@ -8,6 +8,14 @@ body > :nth-child(n+3){
 body > :nth-child(2) {
     width: 100%;
 }
+
+
+
+/* labels: os */
 #nome::before {
     content: "Nome";
 }
+
+/* labels: estoque */
+
+/* labels: cliente */

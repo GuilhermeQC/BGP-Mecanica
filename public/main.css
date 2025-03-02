@@ -73,7 +73,7 @@ main .display {
     height: 70svh;
 }
 
-button {
+form button {
     background: none;
     border: none;
     font-size: 1.5rem;
