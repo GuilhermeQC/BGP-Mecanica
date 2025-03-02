@@ -16,6 +16,7 @@
 *::before,
 *::after,
 *{
+    font-family: Roboto;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -25,8 +26,10 @@
     --azul-escuro: #1E2A47;
     --cinza-escuro: #333C4F;
     --azul-medio: #4C6A92;
-    --azul-claro:#6A8DAD; 
+    --azul-claro:#6A8DAD;
     --branco: #FFFFFF;
+    --type-color: #595959;
+    --input-color: #ddd
 }
 
 label{
