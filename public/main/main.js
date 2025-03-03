@@ -7,6 +7,7 @@ const form = document.querySelector(".popup-form form");
 const btn_adicionar = document.querySelector(".adicionar");
 const btn_fechar = document.querySelector(".fechar");
 
+// carrega os diferentes paineis
 async function loadPanel(panel) {
     const { name, loader } = panels[panel];
     title.innerHTML = name;
@@ -17,6 +18,7 @@ async function loadPanel(panel) {
     await loader();
 }
 
+//adiciona os evenos de click a todos os itens do menu que possuiem a propriedade panel
 for (const panel of panelsElements) {
     panel.addEventListener("click", async function () {
         const panel = this.attributes[0].value;
@@ -42,17 +44,6 @@ popup.addEventListener("keydown", (event) => {
         event.preventDefault();}
 });
 
-/*
-button.addEventListener("click", async () => {
-    const popup = document.querrySelector(".popup");
-    // abrir o popup
-    const formContainer = popup.querrySelector("#formContainer");
-    const response = await fetch(`./panels/${panels[localStorage.getItem("panel")].form}.html`);
-    const content = await response.text();
-    formContainer.innerHTML = content;
-});
-*/
-
 const panels = {
     os: {
         name: "ordens de serviço",
@@ -73,7 +64,7 @@ const panels = {
 
 await loadPanel("os");
 
-
+//funções de tela
 function closeModal (element){
     element.parentElement.style.display = "none";
 }
@@ -84,3 +75,9 @@ function openDetailModal() {
     modal.style.display = "block";
 }
 window.openDetailModal = openDetailModal;
+
+function removeSelf(element) {
+    element.parentElement.remove();
+}
+window.removeSelf = removeSelf;
+
