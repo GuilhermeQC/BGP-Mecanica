@@ -84,6 +84,7 @@ body > :nth-child(2) {
         line-height: 2rem;
         margin: 2rem;
         font-family: Roboto;
+        color: var(--type-color);
     }
 
     & .valor {
@@ -130,6 +131,7 @@ body > :nth-child(2) {
             padding: 1rem;
             border-radius: .5rem;
             width: 10ch;
+            cursor: pointer;
         }
 
         & #editar {
