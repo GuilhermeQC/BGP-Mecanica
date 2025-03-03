@@ -5,6 +5,7 @@ const title = document.querySelector("div > h1");
 const listTitle = document.querySelector(".display h2");
 const form = document.querySelector("form");
 const btn_adicionar = document.querySelector(".adicionar");
+const btn_fechar = document.querySelector(".fechar");
 
 async function loadPanel(panel) {
     const { name, loader } = panels[panel];
@@ -27,6 +28,12 @@ for (const panel of panelsElements) {
 btn_adicionar.addEventListener("click", async () => {
     const popup = document.querySelector(".popup");
     popup.showModal();
+    
+});
+
+btn_fechar.addEventListener("click", async () => {
+    const popup = document.querySelector(".popup");
+    popup.close();
 });
 
 const popup = document.querySelector(".popup");

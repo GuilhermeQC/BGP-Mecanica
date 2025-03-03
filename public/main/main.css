@@ -83,13 +83,13 @@ body> :nth-child(2) {
     background-color: var(--azul-escuro);
 }
 
-.adicionar:focus{
+.adicionar:focus {
     outline: none;
 }
 
 /* Estilização dialog */
 
-.popup{
+.popup {
     border: none;
     border-radius: 10px;
     padding: 20px;
@@ -100,17 +100,44 @@ body> :nth-child(2) {
     background: white;
 
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-dialog::backdrop{
+dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-dialog:focus{
+dialog:focus {
     outline: none;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-header .fechar {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.fechar {
+    padding: 5px;
+    outline: none;
+    border: none;
+
+    width: 25px;
+
+    border-radius: 10%;
+    background-color: var(--azul-medio);
+}
+
+.fechar > i{
+    color: white;
 }
 
 /* labels: os */
