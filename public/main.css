@@ -59,6 +59,7 @@ main {
     padding: 0 2rem;
     display: flex;
     gap: 1rem;
+    flex-direction: column;
 }
 
 main form {
@@ -68,7 +69,7 @@ main form {
 main .display {
     flex-grow: 1;
     padding-left: 2rem;
-    box-shadow: lightgrey .5rem .5rem 0;
+    box-shadow: lightgrey 0rem 0rem .5rem;
     border-radius: .5rem;
     height: 70svh;
     position: relative;

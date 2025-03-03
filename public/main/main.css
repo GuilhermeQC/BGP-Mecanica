@@ -165,9 +165,16 @@ dialog:focus {
     background-color: white;
     overflow: auto;
     border-radius: .5rem;
+    display: none;
 
-    & h2 {
+    & > span {
+        display: block;
         padding: 0 2rem;
+        font-size: .8rem;
+    }
+    & h2, > h3 {
+        padding: 0 2rem;
+        margin-top: .5rem;
     }
 
     &>p {
@@ -264,6 +271,25 @@ dialog:focus {
     content: "Nome";
 }
 
+#valor::before {
+    content: "Valor";
+}
+
+#clientes::before {
+    content: "Clientes";
+}
+
+#descricao::before {
+    content: "Descrição";
+}
 /* labels: estoque */
 
 /* labels: cliente */
+
+#telefone::before {
+    content: "Telefone";
+}
+
+#cpf::before {
+    content: "CPF";
+}

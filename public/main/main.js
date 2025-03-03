@@ -25,7 +25,6 @@ for (const panel of panelsElements) {
     });
 }
 
-
 btn_adicionar.addEventListener("click", async () => {
     const popup = document.querySelector(".popup");
     popup.showModal();
