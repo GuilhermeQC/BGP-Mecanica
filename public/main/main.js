@@ -3,7 +3,7 @@ import { loadOS, loadCliente, loadEstoque } from './loaders.js'
 const panelsElements = document.querySelectorAll("a[panel]");
 const title = document.querySelector("div > h1");
 const listTitle = document.querySelector(".display h2");
-const form = document.querySelector("form");
+const form = document.querySelector(".popup-form form");
 const btn_adicionar = document.querySelector(".adicionar");
 const btn_fechar = document.querySelector(".fechar");
 
@@ -29,7 +29,7 @@ for (const panel of panelsElements) {
 btn_adicionar.addEventListener("click", async () => {
     const popup = document.querySelector(".popup");
     popup.showModal();
-    
+
 });
 
 btn_fechar.addEventListener("click", async () => {
@@ -38,7 +38,7 @@ btn_fechar.addEventListener("click", async () => {
 });
 
 const popup = document.querySelector(".popup");
-popup.addEventListener("keydown", () => {
+popup.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         event.preventDefault();}
 });

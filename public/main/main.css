@@ -113,12 +113,13 @@ body> :nth-child(2) {
     padding: 20px;
     width: 100%;
     max-width: 650px;
+    aspect-ratio: 1;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     background: white;
 
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -148,14 +149,12 @@ dialog:focus {
     outline: none;
     border: none;
     cursor: pointer;
-
     width: 25px;
-
     border-radius: 10%;
     background-color: var(--azul-medio);
 }
 
-.fechar>i {
+.fechar > i {
     color: white;
 }
 
