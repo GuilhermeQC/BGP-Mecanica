@@ -4,6 +4,7 @@ const panelsElements = document.querySelectorAll("a[panel]");
 const title = document.querySelector("div > h1");
 const listTitle = document.querySelector(".display h2");
 const form = document.querySelector("form");
+const btn_adicionar = document.querySelector(".adicionar");
 
 async function loadPanel(panel) {
     const { name, loader } = panels[panel];
@@ -21,6 +22,18 @@ for (const panel of panelsElements) {
         await loadPanel(panel);
     });
 }
+
+
+btn_adicionar.addEventListener("click", async () => {
+    const popup = document.querySelector(".popup");
+    popup.showModal();
+});
+
+const popup = document.querySelector(".popup");
+popup.addEventListener("keydown", () => {
+    if (event.key === "Escape") {
+        event.preventDefault();}
+});
 
 /*
 button.addEventListener("click", async () => {
