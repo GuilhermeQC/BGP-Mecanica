@@ -1,15 +1,17 @@
 body {
     height: 100svh;
 }
-body > :nth-child(n+3){
+
+body> :nth-child(n+3) {
     display: none;
 }
 
-body > :nth-child(2) {
+body> :nth-child(2) {
     width: 100%;
 }
 
-.header, .body .row {
+.header,
+.body .row {
     color: white;
     background-color: var(--azul-medio);
     padding: 1rem 2rem;
@@ -25,23 +27,27 @@ body > :nth-child(2) {
         width: 9ch;
     }
 
-    & > :nth-child(2) {
+    &> :nth-child(2) {
         width: 50ch;
     }
 
-    & > :nth-child(3) {
+    &> :nth-child(3) {
         margin-left: auto;
     }
 }
+
 .body {
     height: 60svh;
     overflow: auto;
 }
+
 .body .row {
     width: 100%;
     color: var(--type-color);
     background: none;
-    border-bottom: black solid 1px;;
+    border-bottom: black solid 1px;
+    ;
+
     & span {
         border-right: black solid 1px;
     }
@@ -50,6 +56,33 @@ body > :nth-child(2) {
 .display span {
     display: block;
 }
+
+/* Estilização Botão "Novo" */
+
+#before-display {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 29px;
+}
+
+.novo {
+    background-color: var(--azul-medio);
+    width: 150px;
+    height: 50px;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.novo:hover {
+    background-color: var(--azul-escuro);
+}
+
 
 /* labels: os */
 #nome::before {
