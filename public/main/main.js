@@ -9,18 +9,29 @@ async function loadPanel(panel) {
     const { name, loader } = panels[panel];
     title.innerHTML = name;
     listTitle.innerHTML = `lista ${name}`;
-    const response = await fetch(`./panels/${panels[panel].form}.html`);
-    const content = await response.text();
-    form.innerHTML = content;
+
     await loader();
 }
+
 
 for (const panel of panelsElements) {
     panel.addEventListener("click", async function () {
         const panel = this.attributes[0].value;
+        localStorage.setItem("panel", panel);
         await loadPanel(panel);
     });
 }
+
+/*
+button.addEventListener("click", async () => {
+    const popup = document.querrySelector(".popup");
+    // abrir o popup
+    const formContainer = popup.querrySelector("#formContainer");
+    const response = await fetch(`./panels/${panels[localStorage.getItem("panel")].form}.html`);
+    const content = await response.text();
+    formContainer.innerHTML = content;
+});
+*/
 
 const panels = {
     os: {
