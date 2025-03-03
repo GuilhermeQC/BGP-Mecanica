@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -16,12 +16,9 @@
 </head>
 
 <body>
-    <nav class="menu-lateral">
-        <!--
-        <div class="botao-expandir">
-            <i class="bi bi-list"></i>
-        </div>
-        -->
+
+    <nav class="menu-lateral"> <!-- Menu Lateral-->
+
         <ul>
             <li class="item-menu">
                 <a panel="os">
@@ -31,7 +28,7 @@
             </li>
             <li class="item-menu">
                 <a panel="estoque">
-                    <span class="icon"><i class="bi bi-box-fill"></i></span>
+                    <span class="icon"><i class="bi bi-box"></i></span>
                     <span class="txt-link">Estoque</span>
                 </a>
             </li>
@@ -42,7 +39,7 @@
                 </a>
             </li>
             <li class="item-menu">
-                <a>
+                <a href="../login/login.html">
                     <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
                     <span class="txt-link">Sair</span>
                 </a>
@@ -52,8 +49,9 @@
     <div>
         <h1 id="titulo"></h1>
         <main>
-            <form action="">
-            </form>
+            <div id="before-display">
+                <button class="adicionar">Adicionar</button>
+            </div>
             <div class="display">
                 <h2></h2>
                 <div class="rowModal">
@@ -90,8 +88,8 @@
                 </section>
                 <section class="body">
                     <div class="row">
-                        <span>000001</span>
-                        <span>Pedro é tchutuchiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaau</span>
+                        <span>01</span>
+                        <span>Teste - Ordem de serviço</span>
                         <span>
                             <input type="hidden" name="idOS" value="">
                             <button onclick="openDetailModal(this)"><img src="../../assets/icons/details.svg" alt="abrir menu do item"></button>
@@ -99,7 +97,27 @@
                     </div>
                 </section>
             </div>
+
+            <dialog class="popup">
+
+                <div class="popup-header">
+
+                    <h1>Adicionar</h1>
+
+                    <button class="fechar"><i class="bi bi-x-square"></i></button>
+
+                </div>
+                
+                <div class="popup-form">
+                    <!-- Conteúdo do form aqui-->
+                     Lorem ipsum 
+                </div>
+
+            </dialog>
+
+
         </main>
     </div>
 </body>
+
 </html>

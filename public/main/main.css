@@ -1,15 +1,17 @@
 body {
     height: 100svh;
 }
-body > :nth-child(n+3){
+
+body> :nth-child(n+3) {
     display: none;
 }
 
-body > :nth-child(2) {
+body> :nth-child(2) {
     width: 100%;
 }
 
-.header, .body .row {
+.header,
+.body .row {
     color: white;
     background-color: var(--azul-medio);
     padding: 1rem 2rem;
@@ -21,33 +23,38 @@ body > :nth-child(2) {
         padding-right: 1rem;
     }
 
-    & > :nth-child(1) {
+    &> :nth-child(1) {
         width: 9ch;
     }
 
-    & > :nth-child(2) {
+    &> :nth-child(2) {
         width: 50ch;
     }
 
-    & > :nth-child(3) {
+    &> :nth-child(3) {
         margin-left: auto;
         border: none;
     }
 }
+
 .body {
     height: 60svh;
     overflow: auto;
 }
+
 .body .row {
     width: 100%;
     color: var(--type-color);
     background: none;
-    border-bottom: black solid 1px;;
+    border-bottom: black solid 1px;
+    ;
+
     & span {
         align-content: center;
         border-right: black solid 1px;
     }
-    & button{
+
+    & button {
         cursor: pointer;
         padding: 0;
         width: fit-content;
@@ -56,6 +63,7 @@ body > :nth-child(2) {
         border: none;
         margin: 0;
     }
+
     & img {
         height: 2rem;
         padding: 0;
@@ -65,6 +73,90 @@ body > :nth-child(2) {
 
 .display span {
     display: block;
+}
+
+/* Estilização Botão "Novo" */
+
+#before-display {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 29px;
+}
+
+.adicionar {
+    background-color: var(--azul-medio);
+    width: 150px;
+    height: 50px;
+    color: white;
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.adicionar:hover {
+    background-color: var(--azul-escuro);
+}
+
+.adicionar:focus {
+    outline: none;
+}
+
+/* Estilização dialog */
+
+.popup {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    background: white;
+
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog:focus {
+    outline: none;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-header .fechar {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.fechar {
+    padding: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    width: 25px;
+
+    border-radius: 10%;
+    background-color: var(--azul-medio);
+}
+
+.fechar>i {
+    color: white;
 }
 
 .rowModal {
@@ -79,7 +171,7 @@ body > :nth-child(2) {
         padding: 0 2rem;
     }
 
-    & > p {
+    &>p {
         font-size: 1.2rem;
         line-height: 2rem;
         margin: 2rem;
@@ -91,11 +183,13 @@ body > :nth-child(2) {
         align-items: center;
         font-size: 1.2rem;
     }
+
     & h3 {
         margin-bottom: 1rem;
         color: var(--type-color);
     }
-    & .valor > div {
+
+    & .valor>div {
         text-transform: capitalize;
         width: fit-content;
         box-shadow: var(--azul-claro) -.2rem -.2rem 0;
@@ -119,7 +213,7 @@ body > :nth-child(2) {
         margin: 0 auto;
         width: fit-content;
 
-        & > button {
+        &>button {
             border: none;
             background: none;
             font-family: Roboto;
