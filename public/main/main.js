@@ -8,11 +8,12 @@ const form = document.querySelector("form");
 async function loadPanel(panel) {
     const { name, loader } = panels[panel];
     title.innerHTML = name;
-    listTitle.innerHTML = `lista ${name}`;
-
+    listTitle.innerHTML = `lista: ${name}`;
+    const response = await fetch(`./panels/${panels[localStorage.getItem("panel")].form}.html`);
+    const content = await response.text();
+    form.innerHTML = content;
     await loader();
 }
-
 
 for (const panel of panelsElements) {
     panel.addEventListener("click", async function () {
@@ -52,3 +53,15 @@ const panels = {
 };
 
 await loadPanel("os");
+
+
+function closeModal (element){
+    element.parentElement.style.display = "none";
+}
+window.closeModal = closeModal;
+
+function openDetailModal() {
+    const modal = document.querySelector(".rowModal");
+    modal.style.display = "block";
+}
+window.openDetailModal = openDetailModal;
