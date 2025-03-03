@@ -287,7 +287,13 @@ dialog:focus {
     content: "Descrição";
 }
 /* labels: estoque */
+#dataAquisicao::before {
+    content: "Data aquisição";
+}
 
+#valorUnitario::before {
+    content: "Valor unitário";
+}
 /* labels: cliente */
 
 #telefone::before {
