@@ -25,27 +25,9 @@ async function loadPanel(panel) {
 for (const panel of panelsElements) {
     panel.addEventListener("click", async function () {
         const panel = this.attributes[0].value;
-        localStorage.setItem("panel", panel);
         await loadPanel(panel);
     });
 }
-
-btn_adicionar.addEventListener("click", async () => {
-    const popup = document.querySelector(".popup");
-    popup.showModal();
-
-});
-
-btn_fechar.addEventListener("click", async () => {
-    const popup = document.querySelector(".popup");
-    popup.close();
-});
-
-const popup = document.querySelector(".popup");
-popup.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        event.preventDefault();}
-});
 
 const panels = {
     os: {
@@ -83,3 +65,20 @@ function removeSelf(element) {
     element.parentElement.remove();
 }
 window.removeSelf = removeSelf;
+
+btn_adicionar.addEventListener("click", async () => {
+    const popup = document.querySelector(".popup");
+    popup.showModal();
+
+});
+
+btn_fechar.addEventListener("click", async () => {
+    const popup = document.querySelector(".popup");
+    popup.close();
+});
+
+const popup = document.querySelector(".popup");
+popup.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        event.preventDefault();}
+});

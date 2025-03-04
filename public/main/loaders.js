@@ -6,7 +6,7 @@ const pecaTemplateHTML = `
 
 const modalTemplateOS = `
 <div class="close" onclick="closeModal(this)"><img src="../../assets/icons/close.svg" alt="fechar modal"></div>
-                    <span>Periodo: 12/12/2024 - 01/01/2025</span>
+                    <span>Periodo: 12/12/2024 - 01/01/2025</span><span>Status: aberta</span>
                     <h2>Titulo</h2>
                     <h3>Cliente</h3>
                     <div class="buttons">
