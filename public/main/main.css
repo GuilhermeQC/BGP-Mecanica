@@ -220,7 +220,7 @@ dialog:focus {
         margin: 0 auto;
         width: fit-content;
 
-        &>button {
+        & > button {
             border: none;
             background: none;
             font-family: Roboto;
@@ -234,6 +234,10 @@ dialog:focus {
             cursor: pointer;
         }
 
+        & h3 {
+            text-align: center;
+        }
+
         & #editar {
             background-color: var(--azul-medio);
         }
@@ -242,9 +246,37 @@ dialog:focus {
             background-color: darkgreen;
         }
 
-        #cancelar {
+        & #cancelar {
             background-color: brown;
         }
+
+        & .input-wrapper {
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+        }
+
+        & input {
+            border: solid 1px black;
+            border-radius: .5rem;
+            padding: 1rem;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        & #atualizar, & #somar, & #subtrair {
+            background-color: var(--azul-claro);
+        }
+    }
+}
+
+ .rowModal .left {
+    margin: 0 2rem;
+
+    & button {
+        width: fit-content;
     }
 }
 
@@ -293,6 +325,9 @@ dialog:focus {
 
 #valorUnitario::before {
     content: "Valor unitário";
+}
+#qtdPecaModal::before {
+    content: "Quatidade da peça";
 }
 /* labels: cliente */
 
