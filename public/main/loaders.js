@@ -68,8 +68,43 @@ const modalTemplateEstoque = `
                     </div>
 `;
 
+async function editOS() {
+    console.log("Função de edição de OS");
+}
+
+async function editCliente() {
+    console.log("Função de edição de Cliente");
+}
+
+async function editEstoque() {
+    console.log("Função de edição de Estoque");
+}
+
+const editPanels = {
+    os: editOS,
+    cliente: editCliente,
+    estoque: editEstoque,
+};
+
+async function showEditModal() {
+    const editarButton = document.querySelector("button#editar");
+    editarButton.addEventListener("click", () => {
+        const popup = document.querySelector(".popup");
+        popup.querySelector("h1").innerText = "Editar";
+        popup.querySelector("form").reset();
+        document.querySelector(".pecas-escolhidas").innerHTML = "";
+        popup.querySelector("form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            if (popup.querySelector("h1").innerText === "Editar")
+                editPanels[localStorage.getItem("panel")]();
+        });
+        popup.showModal();
+    });
+}
+
 export async function loadOS() {
     const pecaContainer = document.querySelector(".pecas-escolhidas");
+    // adicionar peça
     document.getElementById("addPeca").addEventListener("click", (event) => {
         event.preventDefault();
         const button = event.target;
@@ -84,8 +119,9 @@ export async function loadOS() {
             .replace(":qtd", qtd < .1 ? 1 : qtd);
         pecaContainer.innerHTML += pecaItem;
     });
-    console.log("os");
-    return modalTemplateOS;
+
+    const afterLoad = showEditModal;
+    return { modalTemplate: modalTemplateOS, afterLoad };
 }
 
 export async function loadCliente() {
@@ -94,12 +130,14 @@ export async function loadCliente() {
     Inputmask({"mask": "(99) 9 9999-9999"}).mask(telefone);
     Inputmask({"mask": "999.999.999-99"}).mask(cpf);
     console.log("cliente");
-    return modalTemplateCliente;
+    const afterLoad = showEditModal;
+    return { modalTemplate: modalTemplateCliente, afterLoad };
 }
 
 export async function loadEstoque() {
     const data_nasc = document.querySelector("input#dataAquisicao");
     Inputmask({"mask": "99/99/9999"}).mask(data_nasc);
     console.log("estoque");
-    return modalTemplateEstoque;
+    const afterLoad = showEditModal;
+    return { modalTemplate: modalTemplateEstoque, afterLoad };
 }

@@ -8,7 +8,19 @@ const form = document.querySelector(".popup-form form");
 const btn_adicionar = document.querySelector(".adicionar");
 const btn_fechar = document.querySelector(".fechar");
 
-let modal;
+
+async function insertOS() {
+    console.log("Função de inserção de OS");
+}
+
+async function insertCliente() {
+    console.log("Função de inserção de Cliente");
+}
+
+async function insertEstoque() {
+    console.log("Função de inserção de Estoque");
+}
+
 // carrega os diferentes paineis
 async function loadPanel(panel) {
     const { name, loader } = panels[panel];
@@ -17,7 +29,9 @@ async function loadPanel(panel) {
     const response = await fetch(`./panels/${panels[panel].form}.html`);
     const content = await response.text();
     form.innerHTML = content;
-    modal = await loader();
+    const { modalTemplate, afterLoad } = await loader();
+    modalContainer.innerHTML = modalTemplate;
+    await afterLoad();
     modalContainer.style.display = "none";
 }
 
@@ -25,6 +39,7 @@ async function loadPanel(panel) {
 for (const panel of panelsElements) {
     panel.addEventListener("click", async function () {
         const panel = this.attributes[0].value;
+        localStorage.setItem("panel", panel);
         await loadPanel(panel);
     });
 }
@@ -47,6 +62,12 @@ const panels = {
     },
 };
 
+const insertPanels = {
+    os: insertOS,
+    cliente: insertCliente,
+    estoque: insertEstoque,
+};
+
 await loadPanel("os");
 
 //funções de tela
@@ -56,7 +77,6 @@ function closeModal (element){
 window.closeModal = closeModal;
 
 function openDetailModal() {
-    modalContainer.innerHTML = modal;
     modalContainer.style.display = "block";
 }
 window.openDetailModal = openDetailModal;
@@ -68,8 +88,15 @@ window.removeSelf = removeSelf;
 
 btn_adicionar.addEventListener("click", async () => {
     const popup = document.querySelector(".popup");
+    popup.querySelector("h1").innerText = "Adicionar";
+    popup.querySelector("form").reset();
+    document.querySelector(".pecas-escolhidas").innerHTML = "";
+    popup.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (popup.querySelector("h1").innerText === "Adicionar")
+            insertPanels[localStorage.getItem("panel")]();
+    });
     popup.showModal();
-
 });
 
 btn_fechar.addEventListener("click", async () => {
