@@ -92,7 +92,9 @@ async function showEditModal() {
         const popup = document.querySelector(".popup");
         popup.querySelector("h1").innerText = "Editar";
         popup.querySelector("form").reset();
-        document.querySelector(".pecas-escolhidas").innerHTML = "";
+        if (localStorage.getItem("panel") === "os")
+            document.querySelector(".pecas-escolhidas").innerHTML = "";
+        
         popup.querySelector("form").addEventListener("submit", (event) => {
             event.preventDefault();
             if (popup.querySelector("h1").innerText === "Editar")
