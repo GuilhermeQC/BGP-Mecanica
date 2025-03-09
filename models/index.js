@@ -1,16 +1,24 @@
-const sequelize = require('../config/database');
+const { Sequelize, DataTypes } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+const sequelize = require("../config/database");
 
-const Pessoa = require('./Pessoa');
-const Cliente = require('./Cliente');
-const Mecanico = require('./Mecanico');
-const Veiculo = require('./Veiculo');
-const Servico = require('./Servico');
-const Peca = require('./Peca');
-const PecaServico = require('./PecaServico');
+const models = {};
 
-sequelize.sync()
-    .then(() => console.log('📦 Modelos sincronizados com o banco'))
-    .catch(err => console.error('❌ Erro ao sincronizar:', err));
+fs.readdirSync(__dirname)
+  .filter((file) => file !== "index.js" && file.endsWith(".js"))
+  .forEach((file) => {
+    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+    models[model.name] = model;
+  });
 
-module.exports = { Pessoa, Cliente, Mecanico, Veiculo, Servico, Peca, PecaServico };
- 
+Object.keys(models).forEach((modelName) => {
+    if (models[modelName].associate) {
+        models[modelName].associate(models);
+    }
+});
+
+models.sequelize = sequelize;
+models.Sequelize = Sequelize;
+
+module.exports = models;
