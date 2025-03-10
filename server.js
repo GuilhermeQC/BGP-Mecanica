@@ -9,7 +9,7 @@ const routes = require('./routes');
         app.use(cors());
         app.use(express.json());
         app.locals["database"] = await sync();
-        //app.use('/api', routes);
+        app.use('/api', routes);
 
         app.listen(3000, () => {
             console.log('Servidor rodando em http://localhost:3000/api/');
