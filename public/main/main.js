@@ -1,4 +1,7 @@
 import { loadOS, loadCliente, loadEstoque } from './loaders.js'
+import { create_cliente, get_cliente } from '../clienteHandlers.js';
+import { create_estoque, get_estoque, update_quantidade } from '../estoqueHandlers.js';
+import { makeNotificationDiv } from "../utils.js";
 
 const panelsElements = document.querySelectorAll("a[panel]");
 const modalContainer = document.querySelector(".rowModal");
@@ -8,6 +11,8 @@ const form = document.querySelector(".popup-form form");
 const btn_adicionar = document.querySelector(".adicionar");
 const btn_fechar = document.querySelector(".fechar");
 
+let showEditButton;
+let modalTemplateDetails;
 
 async function insertOS() {
     console.log("Função de inserção de OS");
@@ -15,11 +20,42 @@ async function insertOS() {
 
 async function insertCliente() {
     console.log("Função de inserção de Cliente");
+    const nome = document.querySelector("input#nome").value;
+    const telefone = document.querySelector("input#telefone").value;
+    const cpf = document.querySelector("input#cpf").value;
+    const response = await create_cliente(nome, telefone, cpf);
+    if (response.err) {
+        console.log(response.err)
+        makeNotificationDiv(response.err);
+        return;
+    }
+    await loadCliente();
 }
 
 async function insertEstoque() {
     console.log("Função de inserção de Estoque");
+    const nome = document.querySelector("input#nome").value;
+    const dataAquisicao = document.querySelector("input#dataAquisicao").value;
+    const valorUnitario = document.querySelector("input#valorUnitario").value;
+    const qtdPeca = document.querySelector("input#qtdPeca").value;
+    const response = await create_estoque(nome, dataAquisicao, valorUnitario, qtdPeca);
+    if (response.err) {
+        console.log(response.err)
+        makeNotificationDiv(response.err);
+        return;
+    }
+    await loadEstoque();
 }
+
+async function estoqueButtons(element) {
+    const id = element.parentElement.parentElement.querySelector("input#idEstoque").value;
+    const action = element.attributes[0].value;
+    const qtd = element.parentElement.querySelector("input#qtdPecaModal").value;
+    const result = await update_quantidade(id, action, qtd);
+    element.parentElement.querySelector("h3 strong").innerText = result;
+}
+
+window.estoqueButtons = estoqueButtons;
 
 // carrega os diferentes paineis
 async function loadPanel(panel) {
@@ -30,8 +66,8 @@ async function loadPanel(panel) {
     const content = await response.text();
     form.innerHTML = content;
     const { modalTemplate, afterLoad } = await loader();
-    modalContainer.innerHTML = modalTemplate;
-    await afterLoad();
+    modalTemplateDetails = modalTemplate;
+    showEditButton = afterLoad;
     modalContainer.style.display = "none";
 }
 
@@ -76,7 +112,39 @@ function closeModal (element){
 }
 window.closeModal = closeModal;
 
-function openDetailModal() {
+async function openDetailModal(element) {
+    const id = element.parentElement.querySelector("input").value;
+    switch (localStorage.getItem("panel")) {
+        case "cliente":
+            const cliente = await get_cliente(id);
+            const modalContentCliente = modalTemplateDetails
+                .replace(":id", id)
+                .replace(":Nome", cliente.nome)
+                .replace(":CPF", cliente.cpf)
+                .replace(":Telefone", cliente.telefone);
+            modalContainer.innerHTML = modalContentCliente;
+            await showEditButton();
+            break;
+        case "estoque":
+            const estoque = await get_estoque(id);
+            const modalContentEstoque = modalTemplateDetails
+                .replace(":id", id)
+                .replace(":Aquisicao", new Date(estoque.data_aquisicao).toLocaleDateString("pt-BR"))
+                .replace(":Peca", estoque.nome)
+                .replace(":qtd", estoque.quantidade)
+                .replace(":Valor", estoque.valor_unitario.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }))
+                .replace(":valorTotal", (estoque.valor_unitario * estoque.quantidade).toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }));
+            modalContainer.innerHTML = modalContentEstoque;
+            await showEditButton();
+            break;
+    }
+
     modalContainer.style.display = "block";
 }
 window.openDetailModal = openDetailModal;

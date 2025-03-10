@@ -1,7 +1,8 @@
 const models = require("../models");
 
 async function sync() {
-    return await models.sequelize.sync();
+    await models.sequelize.sync();
+    return models;
 }
 
 module.exports = sync;

@@ -8,7 +8,7 @@ const routes = require('./routes');
         const app = express();
         app.use(cors());
         app.use(express.json());
-        app.locals["database"] = await sync();
+        app.locals.database = await sync();
         app.use('/api', routes);
 
         app.listen(3000, () => {
