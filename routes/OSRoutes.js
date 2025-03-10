@@ -1,16 +1,34 @@
 const express = require('express');
-const { Servico } = require('../models');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const servicos = await req.app.locals.OS.findAll();
-    res.json(servicos);
+    try {
+        const servicos = await req.app.locals.database.OS.findAll();
+        res.status(200).json(servicos);
+    } catch (err) {
+        res.status(500).json({ err: err.message });
+    }
 });
 
 router.post('/', async (req, res) => {
-    const novoServico = await req.app.locals.OS.create(req.body);
-    res.json(novoServico);
+    try {
+        const { pecas, ...values } = req.body;
+        const novoServico = await req.app.locals.database.OS.create({
+            ...values,
+            inicio: new Date(),
+        });
+        for (const peca of pecas) {
+            await req.app.locals.database.PecaServico.create({
+                servico_id: novoServico.id,
+                peca_id: peca.id,
+                quantidade: peca.qtd,
+            });
+        }
+        res.json(novoServico);
+    } catch (err) {
+        res.status(500).json({ err: err.message });
+    }
 });
 
 module.exports = router;

@@ -1,10 +1,11 @@
 import Inputmask from "/node_modules/inputmask/dist/inputmask.es6.js";
 import { get_all_clientes, update_cliente, get_cliente } from '../clienteHandlers.js';
 import { get_all_estoque, get_estoque, update_estoque } from '../estoqueHandlers.js';
+import { get_all_os } from "../OSHandlers.js";
 import { makeNotificationDiv } from "../utils.js";
 
 const pecaTemplateHTML = `
-<span><img src="../../../assets/icons/close.svg" alt="retirar peça" idPeca=">:idPeca" onclick="removeSelf(this)">:qtd - :label</span>
+<span idPeca=":idPeca"><img src="../../../assets/icons/close.svg" alt="retirar peça" onclick="removeSelf(this)">:qtd - :label</span>
 `;
 const rowTemplateHTML = `
     <div class="row">
@@ -165,6 +166,7 @@ async function showEditModal() {
 }
 
 export async function loadOS() {
+    const tableRowContainer = document.querySelector("div.display .body");
     const pecaContainer = document.querySelector(".pecas-escolhidas");
     // adicionar peça
     document.getElementById("addPeca").addEventListener("click", (event) => {
@@ -181,6 +183,23 @@ export async function loadOS() {
             .replace(":qtd", qtd < .1 ? 1 : qtd);
         pecaContainer.innerHTML += pecaItem;
     });
+
+    const os = await get_all_os();
+    tableRowContainer.innerHTML = "";
+    if (os.err) {
+        console.log(os.err)
+        makeNotificationDiv(os.err);
+        return;
+    }
+
+    for (const item of os) {
+        const row = rowTemplateHTML
+            .replace(":id", item.id)
+            .replace(":id-type", "idOS")
+            .replace(":id-value", item.id)
+            .replace(":descricao", item.descricao);
+        tableRowContainer.innerHTML += row;
+    }
 
     const afterLoad = showEditModal;
     return { modalTemplate: modalTemplateOS, afterLoad };

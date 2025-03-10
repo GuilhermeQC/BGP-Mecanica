@@ -1,6 +1,7 @@
 import { loadOS, loadCliente, loadEstoque } from './loaders.js'
-import { create_cliente, get_cliente } from '../clienteHandlers.js';
-import { create_estoque, get_estoque, update_quantidade } from '../estoqueHandlers.js';
+import { get_all_clientes, create_cliente, get_cliente } from '../clienteHandlers.js';
+import { get_all_estoque, create_estoque, get_estoque, update_quantidade } from '../estoqueHandlers.js';
+import { create_os } from '../OSHandlers.js';
 import { makeNotificationDiv } from "../utils.js";
 
 const panelsElements = document.querySelectorAll("a[panel]");
@@ -16,6 +17,23 @@ let modalTemplateDetails;
 
 async function insertOS() {
     console.log("Função de inserção de OS");
+    const valor = document.querySelector("input#valor").value;
+    const descricao = document.querySelector("textarea#descricao").value;
+    const cliente = document.querySelector("select#clientes").value;
+    const pecasSpan = document.querySelector(".pecas-escolhidas").querySelectorAll("span");
+    let pecas = [];
+    for (const span of pecasSpan) {
+        const id = span.attributes[0].value;
+        const qtd = span.innerText.split(" - ")[0];
+        pecas.push({ id, qtd });
+    }
+    const response = await create_os(valor, descricao, cliente, pecas);
+    if (response.err) {
+        console.log(response.err)
+        makeNotificationDiv(response.err);
+        return;
+    }
+    await loadCliente();
 }
 
 async function insertCliente() {
@@ -143,6 +161,9 @@ async function openDetailModal(element) {
             modalContainer.innerHTML = modalContentEstoque;
             await showEditButton();
             break;
+        case "os":
+
+            break;
     }
 
     modalContainer.style.display = "block";
@@ -166,6 +187,15 @@ btn_adicionar.addEventListener("click", async () => {
         if (popup.querySelector("h1").innerText === "Adicionar")
             insertPanels[localStorage.getItem("panel")]();
     });
+
+    const clienteSelect = document.querySelector("form select#clientes");
+    const clientesOptions = await get_all_clientes().then((values) => values.map(value => `<option value="${value.id}">${value.nome}</option>`));
+    clienteSelect.innerHTML += clientesOptions;
+
+    const pecaSelect = document.querySelector("form select#pecas");
+    const pecaOptions = await get_all_estoque().then((values) => values.map(value => `<option value="${value.id}">${value.nome}</option>`));
+    pecaSelect.innerHTML += pecaOptions;
+
     popup.showModal();
 });
 
